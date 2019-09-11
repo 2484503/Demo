@@ -1,8 +1,12 @@
 package com.test.backup.ObserverDemo;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import java.util.Observable;
 
-public class Teacher extends Observable {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class TeacherObServer extends Observable {
 
     public void setHomeWork(String work) {
 

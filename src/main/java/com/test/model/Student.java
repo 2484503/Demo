@@ -17,4 +17,6 @@ public class Student {
 
     private List<Person> personList;
 
+    private String weight;
+
 }

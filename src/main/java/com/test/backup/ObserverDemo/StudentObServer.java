@@ -3,12 +3,11 @@ package com.test.backup.ObserverDemo;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Student implements Observer {
+public class StudentObServer implements Observer {
 
     private Observable ob;
 
-    public Student(Observable ob) {
-        this.ob = ob;
+    protected StudentObServer(Observable ob) {
         ob.addObserver(this);
     }
 

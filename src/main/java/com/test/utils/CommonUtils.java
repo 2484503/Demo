@@ -1,10 +1,10 @@
 package com.test.utils;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.Assert;
 
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 /**
  * @author lijn
@@ -14,26 +14,84 @@ import java.util.Arrays;
 public class CommonUtils {
 
     /**
-     * 将data Double类型的字段值设置默认值
+     * 给entity的clazz类型字段赋值默认值defaultValue
      *
-     * @param data
+     * @param entity
      */
-    public static <T> void setFiledDefault(T data) {
-        Class clazz = data.getClass();
-        Field[] fieldArray = clazz.getDeclaredFields();
+    public static <T> void setEntityFiledDefault(T entity, Class clazz, Object defaultValue) throws IllegalAccessException {
+        if (entity == null) {
+            return;
+        }
 
-        Arrays.stream(fieldArray)
-                .filter(field -> field.getType() == Double.class)
-                .forEach(field -> {
-                    field.setAccessible(true);
-                    try {
-                        if (field.get(data) == null) {
-                            field.set(data, 0.0);
-                        }
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                });
+        Class dataClazz = entity.getClass();
+        Field[] fields = dataClazz.getDeclaredFields();
+        int count = fields.length;
+
+        for (int index = 0; index < count; index++) {
+            Field field = fields[index];
+
+            if (field.getType() != clazz) {
+                continue;
+            }
+
+            if (!field.isAccessible()) {
+                field.setAccessible(true);
+            }
+
+            if (field.get(entity) == null) {
+                field.set(entity, defaultValue);
+            }
+        }
+    }
+
+    /**
+     * 将dataSource的clazz类型的属性值，copy到dataTarget的String同名字段中
+     *
+     * @param dataSource
+     * @param dataTarget
+     * @param clazz
+     */
+    public static <T> void copyValueToStr(T dataSource, T dataTarget, Class clazz) throws IllegalAccessException {
+        Assert.notNull(dataSource, "dataSource must not be null");
+        Assert.notNull(dataTarget, "dataTarget must not be null");
+
+        Field[] fieldsSource = dataSource.getClass().getDeclaredFields();
+        Field[] fieldsTarget = dataTarget.getClass().getDeclaredFields();
+
+        int count = fieldsSource.length;
+
+        for (int index = 0; index < count; index++) {
+            Field fieldSource = fieldsSource[index];
+            if (fieldSource.getType() != clazz) {
+                continue;
+            }
+            int matchIndex = isContainFiled(fieldsTarget, fieldSource.getName());
+            if(matchIndex < 0){
+                continue;
+            }
+            Field fieldTarget = fieldsTarget[matchIndex];
+            if (!fieldTarget.isAccessible()) {
+                fieldTarget.setAccessible(true);
+            }
+            if (!fieldSource.isAccessible()) {
+                fieldSource.setAccessible(true);
+            }
+            Object object = fieldSource.get(dataSource);
+            if(object == null){
+                continue;
+            }
+            fieldTarget.set(dataTarget, object.toString());
+        }
+    }
+
+    private static int isContainFiled(Field[] fields, String propertyName) {
+        int count = fields.length;
+        for (int index = 0; index < count; index++) {
+            if (fields[index].getName().equals(propertyName)) {
+                return index;
+            }
+        }
+        return -1;
     }
 
     /**

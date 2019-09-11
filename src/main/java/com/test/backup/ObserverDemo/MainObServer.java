@@ -3,11 +3,11 @@ package com.test.backup.ObserverDemo;
 /**
  * 观察者模式
  */
-public class Demo {
+public class MainObServer {
     public static void main(String[] args) {
-        Teacher t = new Teacher();
+        TeacherObServer t = new TeacherObServer();
 
-        Student s1 = new Student(t);
+        StudentObServer s1 = new StudentObServer(t);
 
         t.setHomeWork("作业1");
     }
