@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
+ * 维护序列化的配置
  * @author lijn
  * @version 1.0
  * @date 2019/8/20 17:48

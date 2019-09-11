@@ -9,11 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 反序列化工具
+ *
  * @author lijn
  * @version 1.0
  * @date 2019/8/21 10:16
  */
-public class AceDeserializer {
+public class DeserializerUtils {
 
     @SneakyThrows
     public static <T> T deserialize(String src, Class<T> clazz) {

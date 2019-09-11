@@ -1,26 +1,19 @@
-/**
- * 生成Token的工具类：
- */
 package com.test.utils;
+
+import sun.misc.BASE64Encoder;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
-import sun.misc.BASE64Encoder;
-
 /**
  * 生成Token的工具类
- *
- * @author zhous
- * @since 2018-2-23 13:59:27
  */
 public class TokenProccessor {
 
     private TokenProccessor() {
     }
 
-    ;
     private static final TokenProccessor instance = new TokenProccessor();
 
     public static TokenProccessor getInstance() {
@@ -43,9 +36,5 @@ public class TokenProccessor {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new TokenProccessor().makeToken());
     }
 }
