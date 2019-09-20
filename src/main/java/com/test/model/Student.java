@@ -1,5 +1,6 @@
 package com.test.model;
 
+import com.test.service.VersionInterface;
 import lombok.Data;
 
 import java.util.List;
@@ -10,8 +11,10 @@ import java.util.List;
  * @date 2019/5/30 15:53
  */
 @Data
-public class Student {
+public class Student implements VersionInterface {
     private int id;
+
+    private int num;
 
     private String name;
 
@@ -19,4 +22,16 @@ public class Student {
 
     private String weight;
 
+    private int version;
+
+    @Override
+    public int getVersion() {
+        return version;
+    }
+
+    @Override
+    public Student setVersion(int version) {
+        this.version = version;
+        return this;
+    }
 }

@@ -1,6 +1,10 @@
 package com.test.model;
 
+import com.test.service.VersionInterface;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -10,7 +14,10 @@ import java.util.List;
  * @date 2019/5/30 15:53
  */
 @Data
-public class Teacher {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Teacher implements VersionInterface {
 
     private int num;
 
@@ -23,4 +30,17 @@ public class Teacher {
     private Double grade;
 
     private Double weight;
+
+    private int version;
+
+    @Override
+    public int getVersion() {
+        return version;
+    }
+
+    @Override
+    public Teacher setVersion(int version) {
+        this.version = version;
+        return this;
+    }
 }
