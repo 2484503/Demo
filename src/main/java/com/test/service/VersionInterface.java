@@ -11,4 +11,7 @@ public interface VersionInterface {
 
     Object setVersion(int version);
 
+    default void test() {
+        System.out.println("1");
+    }
 }

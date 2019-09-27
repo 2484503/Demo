@@ -1,4 +1,4 @@
-package com.test.main;
+package com.test.backup;
 
 import com.test.model.Student;
 import com.test.model.Teacher;
@@ -6,7 +6,7 @@ import com.test.service.VersionInterface;
 import com.test.utils.serializer.DeserializerUtils;
 import com.test.utils.serializer.SerializerUtils;
 
-public class Demo {
+public class JsonReplaceVersionDemo {
     public static void main(String[] args) {
         String content = "{\"num\":\"123\",\"name\":\"2222\",\"version\":\"22\"}";
 

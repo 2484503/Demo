@@ -1,6 +1,7 @@
 package com.test.model;
 
 import com.test.service.VersionInterface;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @date 2019/5/30 15:53
  */
 @Data
+@Builder
 public class Student implements VersionInterface {
     private int id;
 
