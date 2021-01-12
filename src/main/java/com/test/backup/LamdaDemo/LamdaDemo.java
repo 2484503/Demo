@@ -14,7 +14,7 @@ import java.util.List;
  * @version 1.0
  * @date 2019/9/23 09:08
  */
-public class Demo {
+public class LamdaDemo {
     public static void main(String[] args) {
         StringToIntegerTest();
     }
@@ -35,10 +35,5 @@ public class Demo {
         Converter<String, Integer> converter = (from) -> Integer.valueOf(from);
         Integer converted = converter.convert("123");
         System.out.println(converted);
-    }
-
-    private static void PersonFactoryTest() {
-        PersonFactory<Person> personFactory = Person::new;
-        Person person = personFactory.create(1, "Peter", "Parker", 12, BigDecimal.ONE, null, null);
     }
 }

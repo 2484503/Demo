@@ -4,6 +4,7 @@ import com.test.service.VersionInterface;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -25,6 +26,8 @@ public class Student implements VersionInterface {
     private String weight;
 
     private int version;
+
+    private LocalDateTime date;
 
     @Override
     public int getVersion() {

@@ -1,9 +1,6 @@
 package com.test.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -16,17 +13,23 @@ import java.util.List;
  * @date 2019/5/30 16:01
  */
 @Data
+@Builder
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 public class Person implements Serializable {
+    {
+        System.out.println("person 构造代码块");
+    }
 
-    private int age;
+    private Enum test;
+
+    private Integer age;
 
     private String name;
 
     private String address;
 
-    private int sex;
+    private Integer sex;
 
     private BigDecimal weight;
 
